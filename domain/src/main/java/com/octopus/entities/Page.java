@@ -20,4 +20,9 @@ public class Page {
 	private int id;
 	private String name;
 	private String fileUrl;
+
+	public Page(String name, String fileUrl) {
+		this.name = name;
+		this.fileUrl = fileUrl;
+	}
 }
