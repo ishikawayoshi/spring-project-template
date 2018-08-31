@@ -2,8 +2,8 @@
   <div id="app">
     <nav-bar></nav-bar>
     <div class="container">
-      <page-input></page-input>
-      <b-table :items="myPages"></b-table>
+      <page-input @updateTable="updateTable"></page-input>
+      <b-table :items="myPages" :striped="true" :hover="true" :small="true"></b-table>
     </div>
   </div>
 </template>
@@ -22,9 +22,14 @@
       }
     },
     mounted() {
-      this.axios.get("/api/pages").then(resp => {
-        this.myPages = resp.data;
-      })
+      this.updateTable();
+    },
+    methods:{
+      updateTable(){
+        this.axios.get("/api/pages").then(resp => {
+          this.myPages = resp.data;
+        })
+      }
     }
   }
 </script>

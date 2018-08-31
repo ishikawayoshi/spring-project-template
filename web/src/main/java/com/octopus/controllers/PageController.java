@@ -1,6 +1,6 @@
 package com.octopus.controllers;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
+import com.octopus.dto.PageDTO;
 import com.octopus.entities.Page;
 import com.octopus.repositories.PageRepository;
 import lombok.AllArgsConstructor;
@@ -27,22 +27,13 @@ public class PageController {
 		return pageRepository.findAll();
 	}
 
-	@PostMapping("/pages")
-	public List<Page> postPages(@RequestBody PageDTO page) {
-		if (page != null) {
+	@PostMapping(value = "/pages")
+	public Page postPages(@RequestBody Page page) {
 
-		}
-		logger.info("PageDTO received name " + page.getName());
-		return pageRepository.findAll();
+		logger.info("PageDTO received name " + page.toString());
+		Page some_file_url = new Page(page.getName(), page.getFileUrl());
+		pageRepository.save(some_file_url);
+		return some_file_url;
 	}
 
-	@Data
-	public class PageDTO {
-		private String name;
-
-		@JsonCreator
-		public PageDTO(String name) {
-			this.name = name;
-		}
-	}
 }

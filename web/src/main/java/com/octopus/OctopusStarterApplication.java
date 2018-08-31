@@ -13,6 +13,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class OctopusStarterApplication implements CommandLineRunner {
 
 	private static final Log logger = LogFactory.getLog(OctopusStarterApplication.class);
+
 	@Autowired
 	private PageRepository pageRepository;
 

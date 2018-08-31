@@ -1,22 +1,24 @@
 <template>
   <div>
     <b-form @submit="onSubmit" @reset="onReset" v-if="show">
-      <!--<b-form-group id="exampleInputGroup1"-->
-                    <!--label="Email address:"-->
-                    <!--label-for="exampleInput1"-->
-                    <!--description="We'll never share your email with anyone else.">-->
-        <!--<b-form-input id="exampleInput1"-->
-                      <!--type="email"-->
-                      <!--v-model="form.email"-->
-                      <!--required-->
-                      <!--placeholder="Enter email">-->
-        <!--</b-form-input>-->
-      <!--</b-form-group>-->
+      <b-form-group id="exampleInputGroup1"
+                    label="File URL:"
+                    label-for="exampleInput1"
+                    description="We'll never share your url with anyone else.">
+        <b-form-input id="exampleInput1"
+                      type="text"
+                      size="sm"
+                      v-model="form.fileUrl"
+                      required
+                      placeholder="Enter your url">
+        </b-form-input>
+      </b-form-group>
       <b-form-group id="exampleInputGroup2"
                     label="File Name:"
                     label-for="exampleInput2">
         <b-form-input id="exampleInput2"
                       type="text"
+                      size="sm"
                       v-model="form.name"
                       required
                       placeholder="Enter name">
@@ -48,7 +50,8 @@
     data () {
       return {
         form: {
-          name: ''
+          name: '',
+          fileUrl:''
         },
         foods: [
           { text: 'Select One', value: null },
@@ -60,20 +63,16 @@
     methods: {
       onSubmit (evt) {
         evt.preventDefault();
-        alert(JSON.stringify(this.form));
-        console.log('JSON ' + this.form)
         this.axios.post("/api/pages",this.form).then(resp=>{
           console.log(resp.data);
+          this.$emit("updateTable");
         })
       },
       onReset (evt) {
         evt.preventDefault();
         /* Reset our form values */
-        this.form.email = '';
-        this.form.name = '';
-        this.form.food = null;
-        this.form.checked = [];
-        /* Trick to reset/clear native browser form validation state */
+        this.form.url = '';
+        this.form.fileUrl = '';
         this.show = false;
         this.$nextTick(() => { this.show = true });
       }

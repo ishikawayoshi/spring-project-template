@@ -4,13 +4,19 @@
 
       <b-navbar-toggle target="nav_collapse"></b-navbar-toggle>
 
-      <b-navbar-brand href="#">NavBar</b-navbar-brand>
+      <b-navbar-brand href="#">Parsers</b-navbar-brand>
 
       <b-collapse is-nav id="nav_collapse">
 
         <b-navbar-nav>
           <b-nav-item href="#">Link</b-nav-item>
           <b-nav-item href="#" disabled>Disabled</b-nav-item>
+          <b-nav-item-dropdown text="Menus">
+            <b-dropdown-item href="#">EN</b-dropdown-item>
+            <b-dropdown-item href="#">ES</b-dropdown-item>
+            <b-dropdown-item href="#">RU</b-dropdown-item>
+            <b-dropdown-item href="#">FA</b-dropdown-item>
+          </b-nav-item-dropdown>
         </b-navbar-nav>
 
         <!-- Right aligned nav items -->
@@ -26,6 +32,14 @@
             <b-dropdown-item href="#">ES</b-dropdown-item>
             <b-dropdown-item href="#">RU</b-dropdown-item>
             <b-dropdown-item href="#">FA</b-dropdown-item>
+          </b-nav-item-dropdown>
+          <b-nav-item-dropdown right>
+            <!-- Using button-content slot -->
+            <template slot="button-content">
+              <em>Properties</em>
+            </template>
+            <b-dropdown-item href="#">Settings</b-dropdown-item>
+            <b-dropdown-item href="#">Other Data</b-dropdown-item>
           </b-nav-item-dropdown>
 
           <b-nav-item-dropdown right>
