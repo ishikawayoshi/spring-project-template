@@ -1,6 +1,5 @@
 package com.octopus;
 
-import com.octopus.entities.Page;
 import com.octopus.repositories.PageRepository;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -24,7 +23,6 @@ public class OctopusStarterApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		Page page = new Page("first_url", "name");
-		pageRepository.save(page);
+
 	}
 }

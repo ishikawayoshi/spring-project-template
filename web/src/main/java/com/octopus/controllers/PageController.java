@@ -1,17 +1,14 @@
 package com.octopus.controllers;
 
-import com.octopus.dto.PageDTO;
 import com.octopus.entities.Page;
 import com.octopus.repositories.PageRepository;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api")
@@ -34,6 +31,15 @@ public class PageController {
 		Page some_file_url = new Page(page.getName(), page.getFileUrl());
 		pageRepository.save(some_file_url);
 		return some_file_url;
+	}
+
+	@DeleteMapping(value = "/page")
+	public void deletePage(@RequestParam("id") int id) {
+		Optional<Page> byId = pageRepository.findById(id);
+		if (byId.isPresent()) {
+			pageRepository.deleteById(id);
+
+		}
 	}
 
 }

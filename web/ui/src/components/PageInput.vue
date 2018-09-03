@@ -53,10 +53,6 @@
           name: '',
           fileUrl:''
         },
-        foods: [
-          { text: 'Select One', value: null },
-          'Carrots', 'Beans', 'Tomatoes', 'Corn'
-        ],
         show: true
       }
     },
@@ -66,12 +62,14 @@
         this.axios.post("/api/pages",this.form).then(resp=>{
           console.log(resp.data);
           this.$emit("updateTable");
+          this.form.name = '';
+          this.form.fileUrl = '';
         })
       },
       onReset (evt) {
         evt.preventDefault();
         /* Reset our form values */
-        this.form.url = '';
+        this.form.name = '';
         this.form.fileUrl = '';
         this.show = false;
         this.$nextTick(() => { this.show = true });
