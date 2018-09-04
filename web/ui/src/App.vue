@@ -6,9 +6,10 @@
       <b-table :items="myPages" :fields="fields" :striped="true" :hover="true" :small="true">
         <template slot="actions" slot-scope="row">
           <!-- We use @click.stop here to prevent a 'row-clicked' event from also happening -->
-          <b-button size="sm" @click="info(row.item, row.index, $event.target)">Info</b-button>
           <b-button size="sm" @click="add(row.item, row.index, $event.target)">Add</b-button>
-          <b-button size="sm" @click="deleteElement(row.item, row.index, $event.target)">Delete</b-button>
+          <b-button size="sm" variant="info" @click="info(row.item, row.index, $event.target)">Info</b-button>
+          <b-button size="sm" variant="danger" @click="deleteElement(row.item, row.index, $event.target)">Delete
+          </b-button>
         </template>
       </b-table>
       <!-- Info modal -->
@@ -16,7 +17,10 @@
         <pre>{{ modalInfo.content }}</pre>
       </b-modal>
       <!-- Info modal -->
-      <b-modal id="modalAdd" ref="addModalRef"@hide="resetModal" :title="modalInfo.title" ok-only>
+      <b-modal id="modalAdd" ref="addModalRef" @hide="resetModal" :title="modalInfo.title" ok-only>
+        <page-input @updateTable="updateTable"></page-input>
+      </b-modal>
+      <b-modal id="modalDelete" ref="deleteModalRef" @hide="resetModal" :title="modalInfo.title" ok-only>
         <page-input @updateTable="updateTable"></page-input>
       </b-modal>
     </div>
